@@ -117,3 +117,20 @@ extconf failed, exit code 1
 
 Gem files will remain installed in C:/Program Files/Ruby-2.2-x64/lib/ruby/gems/2.2.0/gems/do_sqlite3-0.10.16 for inspection.
 Results logged to C:/Program Files/Ruby-2.2-x64/lib/ruby/gems/2.2.0/extensions/x64-mswin64-100/2.2.0/do_sqlite3-0.10.16/gem_make.out
+
+★解決：
+http://stackoverflow.com/questions/43778/sqlite3-ruby-gem-failed-to-build-gem-native-extension
+原因一：最新のsqlite3バージョンはwindowsに対応していません。
+解決方法：
+        　①バージョンを取得
+        　gem list --remote --all sqlite
+        　②該当するバージョンをインストール
+        　gem install sqlite3-ruby -v 1.3.3
+        　
+原因二：環境変数は正しくない。
+　　　　　②マニュアルを参考
+　　　　　set RUBYOPT=-ke -rkconv
+　　　　　②もう一度やってみる
+　　　　　C:\WINDOWS\system32>gem install sqlite3-ruby -v 1.3.3
+        　C:\Program Files\Ruby-2.2-x64\bin\ruby: invalid option -k  (-h will show valid options) (RuntimeError)
+        　③パスにフォルダお名前にスペースが入っているせいなので、パスを変える
